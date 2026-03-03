@@ -1,722 +1,649 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0025)https://tvweb.wasmer.app/ -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>静墨轩 · 个人博客</title>
     <style>
+        /* 重置 & 基础 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
         }
 
         body {
-            background-color: var(--light);
-            color: var(--text);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f7fa;
+            color: #1e293b;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        a {
+            text-decoration: none;
+            color: #2563eb;
+            transition: color 0.2s ease;
         }
 
+        a:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        /* 布局容器 */
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .nav-container {
+        /* 头部 = 博客名称 + 导航 */
+        .site-header {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border-bottom: 1px solid #e9eef2;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .header-inner {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
+        .blog-title {
+            font-size: 1.9rem;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-        .logo i {
-            font-size: 2rem;
+        .blog-title a {
+            color: #0f172a;
         }
 
-        nav ul {
+        .blog-title a:hover {
+            text-decoration: none;
+            color: #2563eb;
+        }
+
+        .nav ul {
             display: flex;
             list-style: none;
+            gap: 2rem;
         }
 
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
+        .nav a {
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
+            color: #334155;
+            font-size: 1.05rem;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
         }
 
-        nav ul li a:hover {
-            color: var(--accent);
+        .nav a:hover {
+            border-bottom-color: #2563eb;
+            color: #0f172a;
+            text-decoration: none;
         }
 
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
+        /* 主区域：两栏网格 */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+            margin: 3rem 0;
         }
 
-        nav ul li a:hover::after {
-            width: 100%;
+        /* 文章列表 */
+        .posts-header {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+            letter-spacing: -0.3px;
+            border-left: 6px solid #2563eb;
+            padding-left: 1rem;
+            color: #0b1e33;
         }
 
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+            transition: transform 0.15s ease, box-shadow 0.2s;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 40px rgba(0, 37, 80, 0.08);
+            border-color: #dbe7f5;
+        }
+
+        .article-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.6rem;
+        }
+
+        .article-title a {
+            color: #0f172a;
+        }
+
+        .article-title a:hover {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            font-size: 0.95rem;
+            color: #64748b;
+            margin: 0.8rem 0 1.2rem 0;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 0.8rem;
+        }
+
+        .post-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .post-meta .category a {
+            background: #eef2ff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            color: #2563eb;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .post-meta .category a:hover {
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+        }
+
+        .excerpt {
+            color: #334155;
+            margin: 1.2rem 0 1.5rem 0;
+            font-size: 1.05rem;
+        }
+
+        .read-more {
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: #f1f5f9;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+        }
+
+        .read-more:hover {
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-color: #2563eb;
+        }
+
+        .read-more:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .arrow {
+            transition: transform 0.15s;
+            font-size: 1.1rem;
+        }
+
+        /* 分页 */
+        .pagination {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2.5rem;
+            justify-content: center;
+        }
+
+        .pagination a, .pagination .current {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2.5rem;
+            height: 2.5rem;
+            padding: 0 0.3rem;
+            border-radius: 10px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            font-weight: 500;
+            transition: 0.1s;
+        }
+
+        .pagination .current {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+
+        .pagination a:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+            text-decoration: none;
+        }
+
+        /* 侧边栏 通用部件 */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+        }
+
+        .widget {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.6rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.02);
+            border: 1px solid #f0f3f7;
+        }
+
+        .widget-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.4rem;
             display: flex;
             align-items: center;
-            text-align: center;
-            color: var(--white);
+            gap: 0.5rem;
+            border-bottom: 2px solid #eef2f6;
+            padding-bottom: 0.7rem;
         }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+        .widget-title span {
+            background: #2563eb;
+            color: white;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
             align-items: center;
-        }
-
-        .about-img {
+            justify-content: center;
             border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        /* 搜索框（模拟，无提交） */
+        .search-box {
+            display: flex;
+            border: 1px solid #e2e8f0;
+            border-radius: 50px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: white;
+            transition: box-shadow 0.2s;
         }
 
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
+        .search-box:focus-within {
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            border-color: #2563eb;
         }
 
-        .about-img:hover img {
-            transform: scale(1.05);
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            outline: none;
+            background: transparent;
         }
 
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
+        .search-box button {
+            background: #2563eb;
+            border: none;
+            color: white;
+            padding: 0 1.2rem;
+            font-size: 1.2rem;
+            cursor: default;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            border-left: 1px solid #3b82f6;
+        }
+
+        .search-box button:hover {
+            background: #1d4ed8;
+        }
+
+        /* 关于小部件 */
+        .about-avatar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, #2563eb, #7c3aed);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 500;
+            box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
         }
 
         .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
             margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
+            color: #475569;
         }
 
         .social-links {
             display: flex;
             gap: 1rem;
+            margin-top: 1rem;
         }
 
         .social-links a {
+            background: #f1f4f9;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
+            color: #334155;
+            font-size: 1.2rem;
+            transition: all 0.15s;
         }
 
         .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            transform: scale(1.08);
         }
 
-        .copyright {
+        /* 分类列表（标签样式） */
+        .category-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .category-list li a {
+            background: #f1f5f9;
+            padding: 0.4rem 1.1rem;
+            border-radius: 30px;
+            color: #1f2a44;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            display: inline-block;
+        }
+
+        .category-list li a:hover {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+            text-decoration: none;
+        }
+
+        /* 近期文章列表 */
+        .recent-posts-list {
+            list-style: none;
+        }
+
+        .recent-posts-list li {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px dashed #edf2f7;
+            padding-bottom: 1rem;
+        }
+
+        .recent-posts-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .recent-item a {
+            font-weight: 600;
+            color: #0f172a;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .recent-item a:hover {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .recent-meta {
+            font-size: 0.85rem;
+            color: #6a7b8c;
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        /* 页脚 */
+        .site-footer {
+            background: white;
+            border-top: 1px solid #e9edf2;
+            padding: 2.2rem 0;
+            margin-top: 3rem;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #526477;
         }
 
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+        .footer-content p {
+            margin-bottom: 0.5rem;
         }
 
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
         }
 
+        .footer-links a {
+            color: #3b4e66;
+        }
+
+        /* 移动端适配 */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
+            .header-inner {
                 flex-direction: column;
-                padding: 1rem 0;
                 text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
             }
-            
-            nav ul.active {
-                display: flex;
+            .nav ul {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
+            .main-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
+            .sidebar {
+                position: static;
             }
-            
-            .stats {
-                grid-template-columns: 1fr;
+            .article-title {
+                font-size: 1.6rem;
             }
         }
 
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        /* 小点缀 */
+        .emoji-icon {
+            filter: none;
+            font-style: normal;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
+    <header class="site-header">
+        <div class="container header-inner">
+            <h1 class="blog-title"><a href="javascript:void(0)">📘 静墨轩</a></h1>
+            <nav class="nav">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="javascript:void(0)">首页</a></li>
+                    <li><a href="javascript:void(0)">文章</a></li>
+                    <li><a href="javascript:void(0)">关于</a></li>
+                    <li><a href="javascript:void(0)">联系</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
+    <main class="container main-grid">
+        <!-- 左侧：文章列表 -->
+        <section class="posts">
+            <h2 class="posts-header">📌 最新发布</h2>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
+            <article class="article-card">
+                <h3 class="article-title"><a href="javascript:void(0)">重新思考CSS Grid：命名区域与隐式网格</a></h3>
+                <div class="post-meta">
+                    <span>📅 <time datetime="2026-02-28">2026年2月28日</time></span>
+                    <span class="category">📂 <a href="javascript:void(0)">CSS</a></span>
+                    <span>⏱️ 阅读 7 分钟</span>
                 </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <p class="excerpt">
+                    网格布局早已不是秘密，但你真的用好了grid-template-areas吗？本文通过实际案例探讨命名区域如何让响应式设计更直观，以及隐式网格尺寸的精细控制……
+                </p>
+                <a href="javascript:void(0)" class="read-more">继续阅读 <span class="arrow">→</span></a>
+            </article>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+            <article class="article-card">
+                <h3 class="article-title"><a href="javascript:void(0)">JavaScript 闭包：从内存泄漏到高阶封装</a></h3>
+                <div class="post-meta">
+                    <span>📅 <time datetime="2026-02-25">2026年2月25日</time></span>
+                    <span class="category">📂 <a href="javascript:void(0)">JavaScript</a></span>
+                    <span>⏱️ 阅读 10 分钟</span>
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                <p class="excerpt">
+                    闭包是JS的基石之一，但稍不留神就可能造成内存泄漏。我们重新审视执行上下文、垃圾回收，并给出几种实用模式：模块化、柯里化以及私有变量的优雅实现……
+                </p>
+                <a href="javascript:void(0)" class="read-more">继续阅读 <span class="arrow">→</span></a>
+            </article>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
+            <article class="article-card">
+                <h3 class="article-title"><a href="javascript:void(0)">2026 年 Web 开发工具趋势：AI 与元框架</a></h3>
+                <div class="post-meta">
+                    <span>📅 <time datetime="2026-02-20">2026年2月20日</time></span>
+                    <span class="category">📂 <a href="javascript:void(0)">前端</a></span>
+                    <span>⏱️ 阅读 8 分钟</span>
+                </div>
+                <p class="excerpt">
+                    从Vite 6到AI辅助编码，从Rust工具链到元框架的深化，我们整理了一份2026年前端开发者应关注的技术清单，并聊聊如何理性拥抱变化而不迷失……
+                </p>
+                <a href="javascript:void(0)" class="read-more">继续阅读 <span class="arrow">→</span></a>
+            </article>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
+            <!-- 分页组件（静态） -->
+            <nav class="pagination">
+                <a href="javascript:void(0)">«</a>
+                <a href="javascript:void(0)" class="current">1</a>
+                <a href="javascript:void(0)">2</a>
+                <a href="javascript:void(0)">3</a>
+                <a href="javascript:void(0)">4</a>
+                <a href="javascript:void(0)">»</a>
+            </nav>
+        </section>
+
+        <!-- 右侧：侧边栏 -->
+        <aside class="sidebar">
+            <!-- 搜索（静态） -->
+            <div class="widget">
+                <h3 class="widget-title"><span>🔍</span> 搜索</h3>
+                <div class="search-box">
+                    <input type="search" placeholder="搜文章、标签..." aria-label="搜索">
+                    <button type="button" aria-label="搜索">🔎</button>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+
+            <!-- 关于博主 -->
+            <div class="widget">
+                <h3 class="widget-title"><span>👤</span> 关于</h3>
+                <div class="about-avatar">
+                    <div class="avatar">🎨</div>
+                    <div class="about-text">
+                        <p>你好，我是林溪，前端开发者 &amp; 技术写作者。热衷解构复杂概念，分享实用的代码思考。</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="javascript:void(0)" aria-label="GitHub">🐙</a>
+                    <a href="javascript:void(0)" aria-label="Twitter">🐦</a>
+                    <a href="javascript:void(0)" aria-label="RSS">📡</a>
+                </div>
+            </div>
+
+            <!-- 分类目录 -->
+            <div class="widget">
+                <h3 class="widget-title"><span>📂</span> 分类</h3>
+                <ul class="category-list">
+                    <li><a href="javascript:void(0)">HTML/CSS (12)</a></li>
+                    <li><a href="javascript:void(0)">JavaScript (19)</a></li>
+                    <li><a href="javascript:void(0)">框架 (8)</a></li>
+                    <li><a href="javascript:void(0)">设计模式 (5)</a></li>
+                    <li><a href="javascript:void(0)">工具链 (7)</a></li>
+                    <li><a href="javascript:void(0)">旅行·随笔 (4)</a></li>
+                </ul>
+            </div>
+
+            <!-- 近期文章 -->
+            <div class="widget">
+                <h3 class="widget-title"><span>⏳</span> 近期热文</h3>
+                <ul class="recent-posts-list">
+                    <li class="recent-item">
+                        <a href="javascript:void(0)">CSS 容器查询实战</a>
+                        <div class="recent-meta">📅 2026-02-22  ·  💬 12 评论</div>
+                    </li>
+                    <li class="recent-item">
+                        <a href="javascript:void(0)">TypeScript 5.8 新特性一览</a>
+                        <div class="recent-meta">📅 2026-02-18  ·  💬 9 评论</div>
+                    </li>
+                    <li class="recent-item">
+                        <a href="javascript:void(0)">从零搭建迷你打包器</a>
+                        <div class="recent-meta">📅 2026-02-15  ·  💬 6 评论</div>
+                    </li>
+                    <li class="recent-item">
+                        <a href="javascript:void(0)">2026 颜色格式指南</a>
+                        <div class="recent-meta">📅 2026-02-10  ·  💬 5 评论</div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>© 2026 静墨轩 · 由纯 HTML 与爱构筑 ✦ 保留所有文字想象</p>
+            <p>本博客使用“零JavaScript”主题，仅供浏览。所有链接均为静态演示。</p>
+            <div class="footer-links">
+                <a href="javascript:void(0)">隐私条款</a>
+                <a href="javascript:void(0)">内容许可</a>
+                <a href="javascript:void(0)">订阅</a>
+                <a href="javascript:void(0)">关于本站</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
-</body>
-
-</html>
+</body></html>
